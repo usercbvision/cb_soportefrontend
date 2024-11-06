@@ -1,3 +1,4 @@
+//
 // import React, { useState } from 'react';
 // import {
 //     TextField,
@@ -13,10 +14,6 @@
 //     FormControlLabel,
 //     Switch,
 //     Backdrop,
-//     FormControl,
-//     InputLabel,
-//     Select,
-//     MenuItem,
 //     Alert
 // } from '@mui/material';
 // import {
@@ -24,20 +21,13 @@
 //     VisibilityOff,
 //     AccountCircle,
 //     Lock,
-//     Brightness4,
-//     Brightness7
 // } from '@mui/icons-material';
 // import { useNavigate } from 'react-router-dom';
 // import { ThemeProvider } from '@mui/material/styles';
 // import { lightTheme, darkTheme } from '../theme';
+// import axios from 'axios';
 //
-// const testUsers = [
-//     { username: 'admin', password: 'admin123', role: 'admin', name: 'Administrador Principal' },
-//     { username: 'agenda', password: 'agenda123', role: 'agendamiento', name: 'Control Agendamiento' },
-//     { username: 'super', password: 'super123', role: 'supervisor', name: 'Supervisor General' },
-//     { username: 'jefe', password: 'jefe123', role: 'jefe_tecnico', name: 'Jefe Técnico' },
-//     { username: 'tecnico', password: 'tecnico123', role: 'tecnico', name: 'Técnico Base' }
-// ];
+// const apiUrl = `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_LOGIN_ENDPOINT}`;
 //
 // const Login = () => {
 //     const navigate = useNavigate();
@@ -50,7 +40,6 @@
 //         const savedMode = localStorage.getItem('darkMode');
 //         return savedMode === 'true';
 //     });
-//     const [showTestAccounts, setShowTestAccounts] = useState(false);
 //     const [snackbarOpen, setSnackbarOpen] = useState(false);
 //
 //     const theme = darkMode ? darkTheme : lightTheme;
@@ -61,51 +50,41 @@
 //         setError('');
 //     };
 //
-//     const handleTestAccountSelect = (user) => {
-//         setCredentials({
-//             username: user.username,
-//             password: user.password
-//         });
-//         setError('');
-//     };
-//
 //     const handleLogin = async (e) => {
 //         e.preventDefault();
 //         setIsLoading(true);
 //         setShowLoadingScreen(true);
 //
 //         try {
-//             const user = testUsers.find(
-//                 u => u.username === credentials.username && u.password === credentials.password
-//             );
+//             const response = await axios.post(apiUrl, credentials);
 //
-//             if (user) {
-//                 await new Promise(resolve => setTimeout(resolve, 1000));
+//             if (response.status === 200) {
+//                 const { token, user } = response.data;
 //
-//                 localStorage.setItem('user', JSON.stringify({
-//                     username: user.username,
-//                     name: user.name,
-//                     role: user.role
-//                 }));
+//                 // Guardar token y datos del usuario
+//                 localStorage.setItem('token', token);
+//                 localStorage.setItem('user', JSON.stringify(user));
 //
 //                 setSnackbarOpen(true);
+//
+//                 // Redirección después de un breve delay para mostrar el mensaje de éxito
 //                 setTimeout(() => {
 //                     setShowLoadingScreen(false);
 //                     navigate('/home');
 //                 }, 1000);
-//             } else {
-//                 setError('Usuario o contraseña incorrectos');
-//                 setShowLoadingScreen(false);
 //             }
 //         } catch (error) {
-//             console.error('Error durante el login:', error);
-//             setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
+//             console.error('Error de inicio de sesión:', error);
+//             setError(error.response?.data?.message || 'Error al iniciar sesión. Por favor, inténtalo de nuevo.');
 //             setShowLoadingScreen(false);
 //         } finally {
 //             setIsLoading(false);
 //         }
 //     };
 //
+//     console.log('API URL:', process.env.REACT_APP_API_URL);
+//     console.log('LOGIN ENDPOINT:', process.env.REACT_APP_LOGIN_ENDPOINT);
+//     console.log('URL completa:', `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_LOGIN_ENDPOINT}`);
 //     return (
 //         <ThemeProvider theme={theme}>
 //             <CssBaseline />
@@ -166,7 +145,7 @@
 //                         />
 //
 //                         <Typography variant="h5" component="h1" sx={{ mb: 3, fontWeight: 700, color: theme.palette.primary.main }}>
-//                             Sistema de Agendamiento
+//                             Sistema de Soporte técnico
 //                         </Typography>
 //
 //                         {error && (
@@ -230,36 +209,6 @@
 //                                 {isLoading ? <CircularProgress size={24} /> : 'Iniciar Sesión'}
 //                             </Button>
 //
-//                             <Box sx={{ mt: 2 }}>
-//                                 <Button
-//                                     fullWidth
-//                                     variant="text"
-//                                     onClick={() => setShowTestAccounts(!showTestAccounts)}
-//                                 >
-//                                     {showTestAccounts ? 'Ocultar Cuentas de Prueba' : 'Mostrar Cuentas de Prueba'}
-//                                 </Button>
-//
-//                                 {showTestAccounts && (
-//                                     <FormControl fullWidth sx={{ mt: 2 }}>
-//                                         <InputLabel>Seleccionar Cuenta de Prueba</InputLabel>
-//                                         <Select
-//                                             value=""
-//                                             label="Seleccionar Cuenta de Prueba"
-//                                             onChange={(e) => {
-//                                                 const user = testUsers.find(u => u.username === e.target.value);
-//                                                 if (user) handleTestAccountSelect(user);
-//                                             }}
-//                                         >
-//                                             {testUsers.map((user) => (
-//                                                 <MenuItem key={user.username} value={user.username}>
-//                                                     {user.name} ({user.role})
-//                                                 </MenuItem>
-//                                             ))}
-//                                         </Select>
-//                                     </FormControl>
-//                                 )}
-//                             </Box>
-//
 //                             <FormControlLabel
 //                                 control={
 //                                     <Switch
@@ -272,6 +221,18 @@
 //                             />
 //                         </Box>
 //                     </Box>
+//
+//                     <Typography
+//                         variant="caption"
+//                         sx={{
+//                             position: 'absolute',
+//                             bottom: 8,
+//                             right: 8,
+//                             opacity: 0.4,
+//                         }}
+//                     >
+//                         v1.0.0 - Beta
+//                     </Typography>
 //                 </Grid>
 //             </Grid>
 //
@@ -323,7 +284,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     TextField,
     Button,
@@ -338,23 +299,32 @@ import {
     FormControlLabel,
     Switch,
     Backdrop,
-    Alert
+    Alert,
+    Autocomplete,
+    Step,
+    Stepper,
+    StepLabel,
+    Paper
 } from '@mui/material';
 import {
     Visibility,
     VisibilityOff,
     AccountCircle,
     Lock,
+    Business
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme } from '../theme';
 import axios from 'axios';
+import sucursalesConfig from '../services/sucursales.json';
 
 const apiUrl = `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_LOGIN_ENDPOINT}`;
 
 const Login = () => {
     const navigate = useNavigate();
+    const [activeStep, setActiveStep] = useState(0);
+    const [selectedSucursal, setSelectedSucursal] = useState(null);
     const [credentials, setCredentials] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -367,6 +337,23 @@ const Login = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     const theme = darkMode ? darkTheme : lightTheme;
+
+    useEffect(() => {
+        // Limpiar la sucursal guardada al cargar el componente
+        localStorage.removeItem('selectedSucursal');
+    }, []);
+
+    const handleSucursalSelection = () => {
+        if (!selectedSucursal) {
+            setError('Por favor seleccione una sucursal');
+            return;
+        }
+
+        // Guardar la sucursal seleccionada en localStorage
+        localStorage.setItem('selectedSucursal', JSON.stringify(selectedSucursal));
+        setError('');
+        setActiveStep(1);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -391,7 +378,6 @@ const Login = () => {
 
                 setSnackbarOpen(true);
 
-                // Redirección después de un breve delay para mostrar el mensaje de éxito
                 setTimeout(() => {
                     setShowLoadingScreen(false);
                     navigate('/home');
@@ -406,9 +392,121 @@ const Login = () => {
         }
     };
 
-    console.log('API URL:', process.env.REACT_APP_API_URL);
-    console.log('LOGIN ENDPOINT:', process.env.REACT_APP_LOGIN_ENDPOINT);
-    console.log('URL completa:', `${process.env.REACT_APP_API_URL}${process.env.REACT_APP_LOGIN_ENDPOINT}`);
+    const renderStepContent = (step) => {
+        switch (step) {
+            case 0:
+                return (
+                    <Box sx={{ width: '100%', mt: 2 }}>
+                        <Typography variant="h6" gutterBottom>
+                            Seleccione una Sucursal
+                        </Typography>
+                        <Autocomplete
+                            options={sucursalesConfig.sucursales}
+                            getOptionLabel={(option) => option.nombre}
+                            onChange={(_, value) => setSelectedSucursal(value)}
+                            value={selectedSucursal}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Sucursal"
+                                    required
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <Business color="primary" />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            )}
+                        />
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            onClick={handleSucursalSelection}
+                            sx={{ mt: 3 }}
+                        >
+                            Continuar
+                        </Button>
+                    </Box>
+                );
+            case 1:
+                return (
+                    <Box component="form" onSubmit={handleLogin} sx={{ mt: 1, width: '100%' }}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Usuario"
+                            name="username"
+                            autoComplete="username"
+                            value={credentials.username}
+                            onChange={handleChange}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <AccountCircle color="primary" />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Contraseña"
+                            type={showPassword ? 'text' : 'password'}
+                            value={credentials.password}
+                            onChange={handleChange}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <Lock color="primary" />
+                                    </InputAdornment>
+                                ),
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={() => setShowPassword(!showPassword)}>
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            disabled={isLoading}
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            {isLoading ? <CircularProgress size={24} /> : 'Iniciar Sesión'}
+                        </Button>
+
+                        <Button
+                            fullWidth
+                            variant="outlined"
+                            onClick={() => {
+                                setActiveStep(0);
+                                setSelectedSucursal(null);
+                                localStorage.removeItem('selectedSucursal');
+                            }}
+                            sx={{ mt: 1 }}
+                        >
+                            Cambiar Sucursal
+                        </Button>
+                    </Box>
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -472,78 +570,33 @@ const Login = () => {
                             Sistema de Soporte técnico
                         </Typography>
 
+                        <Stepper activeStep={activeStep} sx={{ width: '100%', mb: 4 }}>
+                            <Step>
+                                <StepLabel>Seleccionar Sucursal</StepLabel>
+                            </Step>
+                            <Step>
+                                <StepLabel>Iniciar Sesión</StepLabel>
+                            </Step>
+                        </Stepper>
+
                         {error && (
                             <Alert severity="error" sx={{ mb: 2, width: '100%' }}>
                                 {error}
                             </Alert>
                         )}
 
-                        <Box component="form" onSubmit={handleLogin} sx={{ mt: 1, width: '100%' }}>
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="username"
-                                label="Usuario"
-                                name="username"
-                                autoComplete="username"
-                                value={credentials.username}
-                                onChange={handleChange}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <AccountCircle color="primary" />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
+                        {renderStepContent(activeStep)}
 
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Contraseña"
-                                type={showPassword ? 'text' : 'password'}
-                                value={credentials.password}
-                                onChange={handleChange}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <Lock color="primary" />
-                                        </InputAdornment>
-                                    ),
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton onClick={() => setShowPassword(!showPassword)}>
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                disabled={isLoading}
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                {isLoading ? <CircularProgress size={24} /> : 'Iniciar Sesión'}
-                            </Button>
-
-                            <FormControlLabel
-                                control={
-                                    <Switch
-                                        checked={darkMode}
-                                        onChange={() => setDarkMode(!darkMode)}
-                                    />
-                                }
-                                label={darkMode ? "Modo Oscuro" : "Modo Claro"}
-                                sx={{ mt: 2 }}
-                            />
-                        </Box>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={darkMode}
+                                    onChange={() => setDarkMode(!darkMode)}
+                                />
+                            }
+                            label={darkMode ? "Modo Oscuro" : "Modo Claro"}
+                            sx={{ mt: 2 }}
+                        />
                     </Box>
 
                     <Typography
