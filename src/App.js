@@ -33,7 +33,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             {/*<NotificationProvider>*/}
-                <Router>
+                <Router basename="/soporte">
                     <CssBaseline />
                     <Routes>
                         <Route path="/login" element={
