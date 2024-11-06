@@ -33,11 +33,11 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             {/*<NotificationProvider>*/}
-                <Router basename="/soporte">
+                <Router>
                     <CssBaseline />
                     <Routes>
                         <Route path="/login" element={
-                            isAuthenticated() ? <Navigate to="/home" replace /> : <Login darkMode={darkMode} onToggleTheme={handleToggleTheme} />
+                            isAuthenticated() ? <Navigate to="/technicians" replace /> : <Login darkMode={darkMode} onToggleTheme={handleToggleTheme} />
                         } />
                         <Route path="/*" element={
                             <ProtectedRoute>
