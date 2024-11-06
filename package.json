@@ -2,6 +2,7 @@
   "name": "soportetecnico",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/soporte",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -24,6 +25,8 @@
     "tailwindcss-animate": "^1.0.7",
     "web-vitals": "^2.1.4"
   },
+
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
