@@ -380,7 +380,7 @@ const Login = () => {
 
                 setTimeout(() => {
                     setShowLoadingScreen(false);
-                    navigate('/home');
+                    navigate('/technicians');
                 }, 1000);
             }
         } catch (error) {
