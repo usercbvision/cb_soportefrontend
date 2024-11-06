@@ -1,241 +1,301 @@
-// src/pages/Dashboard.jsx
-import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import {
-    Box,
-    Grid,
-    Card,
-    CardContent,
-    Typography,
-    Stack,
-    Chip,
-    LinearProgress,
-    Paper
-} from '@mui/material';
-import {
-    Assignment as TaskIcon,
-    CheckCircle as CompleteIcon,
-    Warning as PendingIcon,
-    AccessTime as UrgentIcon,
-} from '@mui/icons-material';
+// // import React, { useState, useEffect } from 'react';
+// // import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+// // import { Box, ThemeProvider, CssBaseline } from '@mui/material';
+// // import { lightTheme, darkTheme } from '../theme';
+// // import Navbar from './layout/Navbar';
+// // import Sidebar from './layout/Sidebar';
+// // import Orders from '../pages/Orders';
+// // import Technicians from '../pages/Technicians';
+// // import TechScheduler from '../pages/TechScheduler';
+// // import ProtectedRoute from './ProtectedRoute';
+// //
+// // const drawerWidth = 240;
+// // const miniDrawerWidth = 64;
+// //
+// // function Dashboard() {
+// //     const [sidebarOpen, setSidebarOpen] = useState(false);
+// //     const [darkMode, setDarkMode] = useState(() => {
+// //         const savedMode = localStorage.getItem('darkMode');
+// //         return savedMode === 'true';
+// //     });
+// //     const [isLoading, setIsLoading] = useState(false);
+// //     const location = useLocation();
+// //     const theme = darkMode ? darkTheme : lightTheme;
+// //
+// //     useEffect(() => {
+// //         localStorage.setItem('darkMode', darkMode);
+// //     }, [darkMode]);
+// //
+// //     useEffect(() => {
+// //         // Simular carga inicial
+// //         setIsLoading(true);
+// //         setTimeout(() => {
+// //             setIsLoading(false);
+// //         }, 1000);
+// //     }, []);
+// //
+// //     const handleDrawerToggle = () => {
+// //         setSidebarOpen(!sidebarOpen);
+// //     };
+// //
+// //     const handleThemeToggle = () => {
+// //         setDarkMode(prevMode => !prevMode);
+// //     };
+// //
+// //     return (
+// //         <ThemeProvider theme={theme}>
+// //             <CssBaseline />
+// //             <Box sx={{ display: 'flex', bgcolor: theme.palette.background.default }}>
+// //                 <Navbar
+// //                     onToggleSidebar={handleDrawerToggle}
+// //                     onToggleTheme={handleThemeToggle}
+// //                     darkMode={darkMode}
+// //                     isOpen={sidebarOpen}
+// //                     drawerWidth={drawerWidth}
+// //                     theme={theme}
+// //                 />
+// //                 <Sidebar
+// //                     open={sidebarOpen}
+// //                     onDrawerToggle={handleDrawerToggle}
+// //                     darkMode={darkMode}
+// //                     drawerWidth={drawerWidth}
+// //                 />
+// //                 <Box
+// //                     component="main"
+// //                     sx={{
+// //                         flexGrow: 1,
+// //                         p: 4,
+// //                         width: { sm: `calc(100% - ${sidebarOpen ? drawerWidth : miniDrawerWidth}px)` },
+// //                         ml: { sm: `${sidebarOpen ? drawerWidth : miniDrawerWidth}px` },
+// //                         transition: theme.transitions.create(['width', 'margin'], {
+// //                             easing: theme.transitions.easing.sharp,
+// //                             duration: theme.transitions.duration.leavingScreen,
+// //                         }),
+// //                         mt: `${theme.mixins.toolbar.minHeight + 8}px`,
+// //                         minHeight: '100vh',
+// //                     }}
+// //                 >
+// //                     <Box sx={{ pt: 2 }}>
+// //                         <Routes>
+// //                             {/* Ruta principal */}
+// //                             <Route path="/" element={<Navigate to="/orders" replace />} />
+// //
+// //                             {/* Rutas protegidas */}
+// //                             <Route
+// //                                 path="/orders"
+// //                                 element={
+// //                                     <ProtectedRoute>
+// //                                         <Orders />
+// //                                     </ProtectedRoute>
+// //                                 }
+// //                             />
+// //
+// //                             <Route
+// //                                 path="/technicians"
+// //                                 element={
+// //                                     <ProtectedRoute>
+// //                                         <Technicians />
+// //                                     </ProtectedRoute>
+// //                                 }
+// //                             />
+// //
+// //                             <Route
+// //                                 path="/scheduler"
+// //                                 element={
+// //                                     <ProtectedRoute>
+// //                                         <TechScheduler />
+// //                                     </ProtectedRoute>
+// //                                 }
+// //                             />
+// //
+// //                             {/* Redirección por defecto */}
+// //                             <Route path="*" element={<Navigate to="/orders" replace />} />
+// //                         </Routes>
+// //                     </Box>
+// //                 </Box>
+// //             </Box>
+// //         </ThemeProvider>
+// //     );
+// // }
+// //
+// // export default Dashboard;
+//
+//
+// import React, { useState, useEffect } from 'react';
+// import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+// import { Box, ThemeProvider, CssBaseline } from '@mui/material';
+// import { lightTheme, darkTheme } from '../theme';
+// import Navbar from './layout/Navbar';
+// import Sidebar from './layout/Sidebar';
+// import Home from '../pages/Home';
+// import Orders from '../pages/Orders';
+// import Technicians from '../pages/Technicians';
+// import TechScheduler from '../pages/TechScheduler';
+//
+// const drawerWidth = 240;
+// const miniDrawerWidth = 64;
+//
+// function Dashboard() {
+//     const [sidebarOpen, setSidebarOpen] = useState(false);
+//     const [darkMode, setDarkMode] = useState(() => {
+//         const savedMode = localStorage.getItem('darkMode');
+//         return savedMode === 'true';
+//     });
+//     const location = useLocation();
+//     const theme = darkMode ? darkTheme : lightTheme;
+//
+//     useEffect(() => {
+//         localStorage.setItem('darkMode', darkMode);
+//     }, [darkMode]);
+//
+//     useEffect(() => {
+//         const user = localStorage.getItem('user');
+//         if (!user && location.pathname !== '/login') {
+//             window.location.href = '/login';
+//         }
+//     }, [location]);
+//
+//     const handleDrawerToggle = () => {
+//         setSidebarOpen(!sidebarOpen);
+//     };
+//
+//     const handleThemeToggle = () => {
+//         setDarkMode(prevMode => !prevMode);
+//     };
+//
+//     return (
+//         <ThemeProvider theme={theme}>
+//             <CssBaseline />
+//             <Box sx={{ display: 'flex', bgcolor: theme.palette.background.default }}>
+//                 <Navbar
+//                     onToggleSidebar={handleDrawerToggle}
+//                     onToggleTheme={handleThemeToggle}
+//                     darkMode={darkMode}
+//                     isOpen={sidebarOpen}
+//                     drawerWidth={drawerWidth}
+//                 />
+//                 <Sidebar
+//                     open={sidebarOpen}
+//                     onDrawerToggle={handleDrawerToggle}
+//                     darkMode={darkMode}
+//                     drawerWidth={drawerWidth}
+//                 />
+//                 <Box
+//                     component="main"
+//                     sx={{
+//                         flexGrow: 1,
+//                         p: 4,
+//                         width: { sm: `calc(100% - ${sidebarOpen ? drawerWidth : miniDrawerWidth}px)` },
+//                         ml: { sm: `${sidebarOpen ? drawerWidth : miniDrawerWidth}px` },
+//                         transition: theme.transitions.create(['width', 'margin'], {
+//                             easing: theme.transitions.easing.sharp,
+//                             duration: theme.transitions.duration.leavingScreen,
+//                         }),
+//                         mt: `${theme.mixins.toolbar.minHeight + 8}px`,
+//                         minHeight: '100vh',
+//                     }}
+//                 >
+//                     <Routes>
+//                         <Route path="/" element={<Navigate to="/home" replace />} />
+//                         <Route path="/home" element={<Home />} />
+//                         <Route path="/orders" element={<Orders />} />
+//                         <Route path="/technicians" element={<Technicians />} />
+//                         <Route path="/scheduler" element={<TechScheduler />} />
+//                         <Route path="*" element={<Navigate to="/home" replace />} />
+//                     </Routes>
+//                 </Box>
+//             </Box>
+//         </ThemeProvider>
+//     );
+// }
+//
+// export default Dashboard;
 
-// Datos de ejemplo
-const mockData = {
-    pendingTasks: 15,
-    completedTasks: 8,
-    urgentTasks: 3,
-    todayTasks: 5,
-    weeklyProgress: 65,
-    technicians: [
-        { id: 1, name: "Juan Pérez", status: "available", activeTasks: 2 },
-        { id: 2, name: "María López", status: "busy", activeTasks: 4 },
-        { id: 3, name: "Carlos Ruiz", status: "offline", activeTasks: 0 },
-    ],
-    recentTasks: [
-        { id: 1, title: "Mantenimiento Router Principal", status: "pending", priority: "high" },
-        { id: 2, title: "Instalación Fibra Óptica", status: "in_progress", priority: "medium" },
-        { id: 3, title: "Reparación Switch", status: "completed", priority: "low" },
-    ]
-};
 
-// Componente para las tarjetas de estadísticas
-const StatCard = ({ icon: Icon, title, value, color }) => (
-    <Card>
-        <CardContent>
-            <Stack direction="row" spacing={2} alignItems="center">
-                <Icon sx={{ fontSize: 40, color }} />
-                <Box>
-                    <Typography variant="h4" component="div">
-                        {value}
-                    </Typography>
-                    <Typography color="text.secondary">
-                        {title}
-                    </Typography>
-                </Box>
-            </Stack>
-        </CardContent>
-    </Card>
-);
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Box, ThemeProvider, CssBaseline } from '@mui/material';
+import { lightTheme, darkTheme } from '../theme';
+import Navbar from './layout/Navbar';
+import Sidebar from './layout/Sidebar';
+import Home from '../pages/Home';
+import Orders from '../pages/Orders';
+import Technicians from '../pages/Technicians';
+import TechScheduler from '../pages/TechScheduler';
 
-// Componente para la lista de tareas recientes
-const RecentTasks = ({ tasks }) => (
-    <Card>
-        <CardContent>
-            <Typography variant="h6" gutterBottom>
-                Tareas Recientes
-            </Typography>
-            <Stack spacing={2}>
-                {tasks.map((task) => (
-                    <Paper key={task.id} elevation={1} sx={{ p: 2 }}>
-                        <Stack direction="row" justifyContent="space-between" alignItems="center">
-                            <Box>
-                                <Typography variant="subtitle1">
-                                    {task.title}
-                                </Typography>
-                                <Chip
-                                    size="small"
-                                    label={task.status === 'pending' ? 'Pendiente' :
-                                        task.status === 'in_progress' ? 'En Proceso' : 'Completado'}
-                                    color={task.status === 'pending' ? 'warning' :
-                                        task.status === 'in_progress' ? 'info' : 'success'}
-                                    sx={{ mt: 1 }}
-                                />
-                            </Box>
-                            <Chip
-                                size="small"
-                                label={task.priority}
-                                color={task.priority === 'high' ? 'error' :
-                                    task.priority === 'medium' ? 'warning' : 'success'}
-                            />
-                        </Stack>
-                    </Paper>
-                ))}
-            </Stack>
-        </CardContent>
-    </Card>
-);
+const drawerWidth = 240;
+const miniDrawerWidth = 64;
 
-// Componente para la lista de técnicos (solo para admin)
-const TechniciansList = ({ technicians }) => (
-    <Card>
-        <CardContent>
-            <Typography variant="h6" gutterBottom>
-                Estado de Técnicos
-            </Typography>
-            <Stack spacing={2}>
-                {technicians.map((tech) => (
-                    <Paper key={tech.id} elevation={1} sx={{ p: 2 }}>
-                        <Stack direction="row" justifyContent="space-between" alignItems="center">
-                            <Typography>
-                                {tech.name}
-                            </Typography>
-                            <Box>
-                                <Chip
-                                    size="small"
-                                    label={tech.status === 'available' ? 'Disponible' :
-                                        tech.status === 'busy' ? 'Ocupado' : 'Offline'}
-                                    color={tech.status === 'available' ? 'success' :
-                                        tech.status === 'busy' ? 'warning' : 'default'}
-                                    sx={{ mr: 1 }}
-                                />
-                                <Chip
-                                    size="small"
-                                    label={`${tech.activeTasks} tareas`}
-                                    color="primary"
-                                />
-                            </Box>
-                        </Stack>
-                    </Paper>
-                ))}
-            </Stack>
-        </CardContent>
-    </Card>
-);
+function Dashboard() {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [darkMode, setDarkMode] = useState(() => {
+        const savedMode = localStorage.getItem('darkMode');
+        return savedMode === 'true';
+    });
+    const navigate = useNavigate();
+    const theme = darkMode ? darkTheme : lightTheme;
 
-// Dashboard principal
-const Dashboard = () => {
-    const { user } = useAuth();
-    const isAdmin = user?.role === 'admin' || user?.role === 'agendamiento';
+    // Simple auth check on mount
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+
+        if (!user || !token) {
+            navigate('/login');
+        }
+    }, [navigate]);
+
+    const handleDrawerToggle = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
+
+    const handleThemeToggle = () => {
+        setDarkMode(prevMode => !prevMode);
+        localStorage.setItem('darkMode', !darkMode);
+    };
 
     return (
-        <Box>
-            <Typography variant="h4" gutterBottom>
-                Dashboard
-            </Typography>
-
-            {/* Estadísticas principales */}
-            <Grid container spacing={3} mb={3}>
-                {isAdmin ? (
-                    // Vista de Administrador
-                    <>
-                        <Grid item xs={12} sm={6} md={3}>
-                            <StatCard
-                                icon={TaskIcon}
-                                title="Tareas Pendientes"
-                                value={mockData.pendingTasks}
-                                color="primary.main"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
-                            <StatCard
-                                icon={CompleteIcon}
-                                title="Completadas"
-                                value={mockData.completedTasks}
-                                color="success.main"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
-                            <StatCard
-                                icon={UrgentIcon}
-                                title="Urgentes"
-                                value={mockData.urgentTasks}
-                                color="error.main"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
-                            <StatCard
-                                icon={PendingIcon}
-                                title="Para Hoy"
-                                value={mockData.todayTasks}
-                                color="warning.main"
-                            />
-                        </Grid>
-                    </>
-                ) : (
-                    // Vista de Técnico
-                    <>
-                        <Grid item xs={12} sm={6}>
-                            <StatCard
-                                icon={TaskIcon}
-                                title="Mis Tareas Pendientes"
-                                value={3}
-                                color="primary.main"
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <StatCard
-                                icon={CompleteIcon}
-                                title="Completadas Hoy"
-                                value={2}
-                                color="success.main"
-                            />
-                        </Grid>
-                    </>
-                )}
-            </Grid>
-
-            {/* Progreso Semanal */}
-            <Card sx={{ mb: 3 }}>
-                <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                        Progreso Semanal
-                    </Typography>
-                    <Box sx={{ mt: 2 }}>
-                        <LinearProgress
-                            variant="determinate"
-                            value={mockData.weeklyProgress}
-                            sx={{ height: 10, borderRadius: 5 }}
-                        />
-                        <Typography variant="body2" color="text.secondary" align="right" sx={{ mt: 1 }}>
-                            {mockData.weeklyProgress}% Completado
-                        </Typography>
-                    </Box>
-                </CardContent>
-            </Card>
-
-            {/* Contenido específico según rol */}
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={isAdmin ? 8 : 12}>
-                    <RecentTasks tasks={mockData.recentTasks} />
-                </Grid>
-                {isAdmin && (
-                    <Grid item xs={12} md={4}>
-                        <TechniciansList technicians={mockData.technicians} />
-                    </Grid>
-                )}
-            </Grid>
-        </Box>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Box sx={{ display: 'flex', bgcolor: theme.palette.background.default }}>
+                <Navbar
+                    onToggleSidebar={handleDrawerToggle}
+                    onToggleTheme={handleThemeToggle}
+                    darkMode={darkMode}
+                    isOpen={sidebarOpen}
+                    drawerWidth={drawerWidth}
+                />
+                <Sidebar
+                    open={sidebarOpen}
+                    onDrawerToggle={handleDrawerToggle}
+                    darkMode={darkMode}
+                    drawerWidth={drawerWidth}
+                />
+                <Box
+                    component="main"
+                    sx={{
+                        flexGrow: 1,
+                        p: 4,
+                        width: { sm: `calc(100% - ${sidebarOpen ? drawerWidth : miniDrawerWidth}px)` },
+                        ml: { sm: `${sidebarOpen ? drawerWidth : miniDrawerWidth}px` },
+                        transition: theme.transitions.create(['width', 'margin'], {
+                            easing: theme.transitions.easing.sharp,
+                            duration: theme.transitions.duration.leavingScreen,
+                        }),
+                        mt: `${theme.mixins.toolbar.minHeight + 8}px`,
+                        minHeight: '100vh',
+                    }}
+                >
+                    <Routes>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/orders" element={<Orders />} />
+                        <Route path="/technicians" element={<Technicians />} />
+                        <Route path="/scheduler" element={<TechScheduler />} />
+                    </Routes>
+                </Box>
+            </Box>
+        </ThemeProvider>
     );
-};
+}
 
 export default Dashboard;

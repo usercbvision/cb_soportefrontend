@@ -1,0 +1,60 @@
+{
+  "sucursales": [
+    {
+      "ip": "45.189.56.150",
+      "nombre": "AMBATO",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.189.57.248",
+      "nombre": "BIBLIAN",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.189.57.82",
+      "nombre": "CANAR",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.171.120.14",
+      "nombre": "KUENCAAA",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.189.56.94",
+      "nombre": "MEJIA",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.189.58.250",
+      "nombre": "PAUTE",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.189.56.30",
+      "nombre": "SALCEDO",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.236.148.29",
+      "nombre": "GUALACEO",
+      "puerto": 50101
+    },
+    {
+      "ip": "45.189.57.26",
+      "nombre": "ROSA",
+      "puerto": 50100
+    },
+    {
+      "ip": "45.189.57.182",
+      "nombre": "TRONCAL",
+      "puerto": 50100
+    },{
+      "ip": "192.168.8.100",
+      "nombre": "CUENCA",
+      "puerto": 50102
+    }
+  ]
+}
+
+
