@@ -650,65 +650,65 @@ function Conexiones() {
                 </ResponsiveContainer>
             </Box>
 
-            <Box sx={{ mt: 4 }}>
-                <Typography variant="h6" gutterBottom>
-                    Estadísticas Adicionales
-                </Typography>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{ height: '100%' }}>
-                            <CardContent>
-                                <Typography color="textSecondary" gutterBottom>
-                                    Días con Uso > 80%
-                                </Typography>
-                                <Typography variant="h5">
-                                    {descuentoData.lecturas.filter(l =>
-                                        100 - l.indisponibilidad > 80
-                                    ).length}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{ height: '100%' }}>
-                            <CardContent>
-                                <Typography color="textSecondary" gutterBottom>
-                                    Días con Uso menor 50%
-                                </Typography>
-                                <Typography variant="h5">
-                                    {descuentoData.lecturas.filter(l =>
-                                        100 - l.indisponibilidad < 50
-                                    ).length}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{ height: '100%' }}>
-                            <CardContent>
-                                <Typography color="textSecondary" gutterBottom>
-                                    Mejor Porcentaje de Uso
-                                </Typography>
-                                <Typography variant="h5">
-                                    {(100 - Math.min(...descuentoData.lecturas.map(l => l.indisponibilidad))).toFixed(2)}%
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <Card sx={{ height: '100%' }}>
-                            <CardContent>
-                                <Typography color="textSecondary" gutterBottom>
-                                    Peor Porcentaje de Uso
-                                </Typography>
-                                <Typography variant="h5">
-                                    {(100 - Math.max(...descuentoData.lecturas.map(l => l.indisponibilidad))).toFixed(2)}%
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </Box>
+            {/*<Boxs sx={{ mt: 4 }}>*/}
+            {/*    <Typography variant="h6" gutterBottom>*/}
+            {/*        Estadísticas Adicionales*/}
+            {/*    </Typography>*/}
+            {/*    <Grid container spacing={2}>*/}
+            {/*        <Grid item xs={12} md={3}>*/}
+            {/*            <Card sx={{ height: '100%' }}>*/}
+            {/*                <CardContent>*/}
+            {/*                    <Typography color="textSecondary" gutterBottom>*/}
+            {/*                        Días con Uso > 80%*/}
+            {/*                    </Typography>*/}
+            {/*                    <Typography variant="h5">*/}
+            {/*                        {descuentoData.lecturas.filter(l =>*/}
+            {/*                            100 - l.indisponibilidad > 80*/}
+            {/*                        ).length}*/}
+            {/*                    </Typography>*/}
+            {/*                </CardContent>*/}
+            {/*            </Card>*/}
+            {/*        </Grid>*/}
+            {/*        <Grid item xs={12} md={3}>*/}
+            {/*            <Card sx={{ height: '100%' }}>*/}
+            {/*                <CardContent>*/}
+            {/*                    <Typography color="textSecondary" gutterBottom>*/}
+            {/*                        Días con Uso menor 50%*/}
+            {/*                    </Typography>*/}
+            {/*                    <Typography variant="h5">*/}
+            {/*                        {descuentoData.lecturas.filter(l =>*/}
+            {/*                            100 - l.indisponibilidad < 50*/}
+            {/*                        ).length}*/}
+            {/*                    </Typography>*/}
+            {/*                </CardContent>*/}
+            {/*            </Card>*/}
+            {/*        </Grid>*/}
+            {/*        <Grid item xs={12} md={3}>*/}
+            {/*            <Card sx={{ height: '100%' }}>*/}
+            {/*                <CardContent>*/}
+            {/*                    <Typography color="textSecondary" gutterBottom>*/}
+            {/*                        Mejor Porcentaje de Uso*/}
+            {/*                    </Typography>*/}
+            {/*                    <Typography variant="h5">*/}
+            {/*                        {(100 - Math.min(...descuentoData.lecturas.map(l => l.indisponibilidad))).toFixed(2)}%*/}
+            {/*                    </Typography>*/}
+            {/*                </CardContent>*/}
+            {/*            </Card>*/}
+            {/*        </Grid>*/}
+            {/*        <Grid item xs={12} md={3}>*/}
+            {/*            <Card sx={{ height: '100%' }}>*/}
+            {/*                <CardContent>*/}
+            {/*                    <Typography color="textSecondary" gutterBottom>*/}
+            {/*                        Peor Porcentaje de Uso*/}
+            {/*                    </Typography>*/}
+            {/*                    <Typography variant="h5">*/}
+            {/*                        {(100 - Math.max(...descuentoData.lecturas.map(l => l.indisponibilidad))).toFixed(2)}%*/}
+            {/*                    </Typography>*/}
+            {/*                </CardContent>*/}
+            {/*            </Card>*/}
+            {/*        </Grid>*/}
+            {/*    </Grid>*/}
+            {/*</Boxs>*/}
         </Box>
     )}
 </CardContent>
