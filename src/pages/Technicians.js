@@ -265,7 +265,7 @@ function Conexiones() {
             });
             setChartData(processedData);
         } catch (err) {
-            setError('Error al obtener datos de descuento');
+            setError('No se encontraron lecturas para este contrato');
             console.error('Error detallado:', err);
         } finally {
             setLoading(false);
