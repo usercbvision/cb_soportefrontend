@@ -1,46 +1,43 @@
-
-
 {
   "sucursales": [
     {
-      "ip": "45.189.56.150",
+      "ip": "192.168.45.25",
       "nombre": "AMBATO",
       "puerto": 50100,
       "id_sucursal": 1
     },
     {
-      "ip": "45.189.57.248",
+      "ip": "192.168.70.100",
       "nombre": "BIBLIAN",
       "puerto": 50100,
       "id_sucursal": 3
     },
     {
-      "ip": "45.189.57.82",
+      "ip": "192.168.4.100",
       "nombre": "CANAR",
       "puerto": 50100,
       "id_sucursal": 5
     },
     {
-      "ip": "45.171.120.14",
+      "ip": "192.168.8.100",
       "nombre": "CUENCA",
-      "puerto": 50100,
+      "puerto": 50102,
       "id_sucursal": 7
     },
-
     {
-      "ip": "45.189.56.94",
+      "ip": "192.168.5.100",
       "nombre": "MEJIA",
       "puerto": 50100,
       "id_sucursal": 8
     },
     {
-      "ip": "45.189.58.250",
+      "ip": "192.168.2.100",
       "nombre": "PAUTE",
       "puerto": 50100,
       "id_sucursal": 10
     },
     {
-      "ip": "45.189.56.30",
+      "ip": "192.168.10.100",
       "nombre": "SALCEDO",
       "puerto": 50100,
       "id_sucursal": 12
@@ -52,13 +49,13 @@
       "id_sucursal": 14
     },
     {
-      "ip": "45.189.57.26",
+      "ip": "192.168.20.100",
       "nombre": "ROSA",
       "puerto": 50100,
       "id_sucursal": 15
     },
     {
-      "ip": "45.189.57.182",
+      "ip": "192.168.3.100",
       "nombre": "TRONCAL",
       "puerto": 50100,
       "id_sucursal": 17

@@ -2135,7 +2135,7 @@ function Conexiones() {
             <Grid container spacing={2} sx={{ mb: 4 }}>
                 <Grid item xs={12} md={4}>
                     <InfoCard
-                        title="Promedio Diario de Indisponibilidad"
+                        title="Promedio de Indisponibilidad"
                         value={`${descuentoData.promedioDiarioIndisponibilidadRedondeado}%`}
                         color="#fbe9e7"
                         infoText={`Valor sin redondear: ${descuentoData.promedioDiarioIndisponibilidad.toFixed(2)}%`}
