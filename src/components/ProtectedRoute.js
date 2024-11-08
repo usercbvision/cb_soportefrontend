@@ -29,7 +29,7 @@
 //     // Obtener datos de autenticación directamente del localStorage
 //     const getUserData = () => {
 //         try {
-//             const userData = localStorage.getItem('usersoporte');
+//             const userData = sessionStorage.getItem('usersoporte');
 //             return userData ? JSON.parse(userData) : null;
 //         } catch (error) {
 //             console.error('Error parsing user data:', error);
@@ -38,7 +38,7 @@
 //     };
 //
 //     const getToken = () => {
-//         return localStorage.getItem('token');
+//         return sessionStorage.getItem('token');
 //     };
 //
 //     const user = getUserData();
@@ -72,8 +72,8 @@ const ProtectedRoute = ({ children }) => {
 
     const validateSession = () => {
         try {
-            const usersoporte = JSON.parse(localStorage.getItem('usersoporte'));
-            const token = localStorage.getItem('token');
+            const usersoporte = JSON.parse(sessionStorage.getItem('usersoporte'));
+            const token = sessionStorage.getItem('token');
 
             if (!usersoporte || !token) {
                 return {
@@ -113,10 +113,10 @@ const ProtectedRoute = ({ children }) => {
     const { isValid, message } = validateSession();
 
     if (!isValid) {
-        // Limpiar localStorage antes de redirigir
-        localStorage.removeItem('token');
-        localStorage.removeItem('usersoporte');
-        localStorage.removeItem('selectedSucursal');
+        // Limpiar sessionStorage.antes de redirigir
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('usersoporte');
+        sessionStorage.removeItem('selectedSucursal');
 
         return <Navigate
             to="/login"

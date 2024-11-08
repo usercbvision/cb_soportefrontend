@@ -12,12 +12,12 @@ import { lightTheme, darkTheme } from './theme';
 
 function App() {
     const [darkMode, setDarkMode] = useState(() => {
-        const savedMode = localStorage.getItem('darkMode');
+        const savedMode = sessionStorage.getItem('darkMode');
         return savedMode === 'true';
     });
 
     useEffect(() => {
-        localStorage.setItem('darkMode', darkMode);
+        sessionStorage.setItem('darkMode', darkMode);
     }, [darkMode]);
 
     const theme = darkMode ? darkTheme : lightTheme;
@@ -27,7 +27,7 @@ function App() {
     };
 
     const isAuthenticated = () => {
-        return !!localStorage.getItem('token');
+        return !!sessionStorage.getItem('token');
     };
 
     return (
@@ -64,12 +64,12 @@ export default App;
 //
 // function App() {
 //     const [darkMode, setDarkMode] = useState(() => {
-//         const savedMode = localStorage.getItem('darkMode');
+//         const savedMode = sessionStorage.getItem('darkMode');
 //         return savedMode === 'true';
 //     });
 //
 //     useEffect(() => {
-//         localStorage.setItem('darkMode', darkMode);
+//         sessionStorage.setItem('darkMode', darkMode);
 //     }, [darkMode]);
 //
 //     const theme = darkMode ? darkTheme : lightTheme;
@@ -79,8 +79,8 @@ export default App;
 //     };
 //
 //     const isAuthenticated = () => {
-//         const token = localStorage.getItem('token');
-//         const usersoporte = localStorage.getItem('usersoporte');
+//         const token = sessionStorage.getItem('token');
+//         const usersoporte = sessionStorage.getItem('usersoporte');
 //         return !!(token && usersoporte);
 //     };
 //

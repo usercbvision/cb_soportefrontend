@@ -48,7 +48,7 @@
 //     const [isLoading, setIsLoading] = useState(false);
 //     const [showLoadingScreen, setShowLoadingScreen] = useState(false);
 //     const [darkMode, setDarkMode] = useState(() => {
-//         const savedMode = localStorage.getItem('darkMode');
+//         const savedMode = sessionStorage.getItem('darkMode');
 //         return savedMode === 'true';
 //     });
 //     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -57,7 +57,7 @@
 //
 //     useEffect(() => {
 //         // Limpiar la sucursal guardada al cargar el componente
-//         localStorage.removeItem('selectedSucursal');
+//         sessionStorage.removeItem('selectedSucursal');
 //     }, []);
 //
 //     const handleSucursalSelection = () => {
@@ -67,7 +67,7 @@
 //         }
 //
 //         // Guardar la sucursal seleccionada en localStorage
-//         localStorage.setItem('selectedSucursal', JSON.stringify(selectedSucursal));
+//         sessionStorage.setItem('selectedSucursal', JSON.stringify(selectedSucursal));
 //         setError('');
 //         setActiveStep(1);
 //     };
@@ -90,8 +90,8 @@
 //                 const { token, user } = response.data;
 //
 //                 // Guardar token y datos del usuario
-//                 localStorage.setItem('token', token);
-//                 localStorage.setItem('usersoporte', JSON.stringify(user));
+//                 sessionStorage.setItem('token', token);
+//                 sessionStorage.setItem('usersoporte', JSON.stringify(user));
 //
 //                 setSnackbarOpen(true);
 //
@@ -211,7 +211,7 @@
 //                             onClick={() => {
 //                                 setActiveStep(0);
 //                                 setSelectedSucursal(null);
-//                                 localStorage.removeItem('selectedSucursal');
+//                                 sessionStorage.removeItem('selectedSucursal');
 //                             }}
 //                             sx={{ mt: 1 }}
 //                         >
@@ -434,7 +434,7 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showLoadingScreen, setShowLoadingScreen] = useState(false);
     const [darkMode, setDarkMode] = useState(() => {
-        const savedMode = localStorage.getItem('darkMode');
+        const savedMode = sessionStorage.getItem('darkMode');
         return savedMode === 'true';
     });
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -449,12 +449,12 @@ const Login = () => {
             setError(location.state.message);
         }
         // Limpiar la sucursal guardada y verificar si hay una sesión activa
-        localStorage.removeItem('selectedSucursal');
+        sessionStorage.removeItem('selectedSucursal');
         checkExistingSession();
     }, [location]);
 
     const checkExistingSession = () => {
-        const userStr = localStorage.getItem('usersoporte');
+        const userStr = sessionStorage.getItem('usersoporte');
         if (userStr) {
             try {
                 const user = JSON.parse(userStr);
@@ -478,9 +478,9 @@ const Login = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('usersoporte');
-        localStorage.removeItem('selectedSucursal');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('usersoporte');
+        sessionStorage.removeItem('selectedSucursal');
         setSnackbarMessage('Sesión cerrada por seguridad');
         setSnackbarSeverity('info');
         setSnackbarOpen(true);
@@ -497,7 +497,7 @@ const Login = () => {
             return;
         }
 
-        localStorage.setItem('selectedSucursal', JSON.stringify(selectedSucursal));
+        sessionStorage.setItem('selectedSucursal', JSON.stringify(selectedSucursal));
         setError('');
         setActiveStep(1);
     };
@@ -528,8 +528,8 @@ const Login = () => {
                 }
 
                 // Si el rol es válido, guardar datos y continuar
-                localStorage.setItem('token', token);
-                localStorage.setItem('usersoporte', JSON.stringify(user));
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('usersoporte', JSON.stringify(user));
 
                 setSnackbarMessage('Inicio de sesión exitoso');
                 setSnackbarSeverity('success');
@@ -651,7 +651,7 @@ const Login = () => {
                             onClick={() => {
                                 setActiveStep(0);
                                 setSelectedSucursal(null);
-                                localStorage.removeItem('selectedSucursal');
+                                sessionStorage.removeItem('selectedSucursal');
                             }}
                             sx={{ mt: 1 }}
                         >

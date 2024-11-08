@@ -8,7 +8,7 @@ export const ALLOWED_ROLES = [
 ];
 
 export const validateUserAccess = () => {
-    const userStr = localStorage.getItem('usersoporte');
+    const userStr = sessionStorage.getItem('usersoporte');
 
     if (!userStr) {
         return {

@@ -47,7 +47,7 @@
 // //
 // //     useEffect(() => {
 // //         try {
-// //             const userData = localStorage.getItem('user');
+// //             const userData = sessionStorage.getItem('user');
 // //             if (userData) {
 // //                 setUser(JSON.parse(userData));
 // //             }
@@ -80,8 +80,8 @@
 // //
 // //     const handleLogout = () => {
 // //         try {
-// //             localStorage.removeItem('token');
-// //             localStorage.removeItem('user');
+// //             sessionStorage.removeItem('token');
+// //             sessionStorage.removeItem('user');
 // //             navigate('/login');
 // //         } catch (err) {
 // //             console.error('Error during logout:', err);
@@ -287,7 +287,7 @@
 //
 //     useEffect(() => {
 //         try {
-//             const userData = localStorage.getItem('user');
+//             const userData = sessionStorage.getItem('user');
 //             if (userData) {
 //                 setUser(JSON.parse(userData));
 //             } else {
@@ -310,8 +310,8 @@
 //     const handleLogout = () => {
 //         try {
 //             // Primero limpiamos localStorage
-//             localStorage.removeItem('token');
-//             localStorage.removeItem('usersoporte');
+//             sessionStorage.removeItem('token');
+//             sessionStorage.removeItem('usersoporte');
 //
 //             // Cerramos el menú
 //             handleClose();
@@ -476,7 +476,7 @@ function Navbar({ onToggleSidebar, onToggleTheme, darkMode }) {
 
     useEffect(() => {
         try {
-            const userSoporteData = localStorage.getItem('usersoporte');
+            const userSoporteData = sessionStorage.getItem('usersoporte');
             if (userSoporteData) {
                 const parsedUser = JSON.parse(userSoporteData);
                 // Verificar si el usuario tiene roles permitidos
@@ -500,9 +500,9 @@ function Navbar({ onToggleSidebar, onToggleTheme, darkMode }) {
 
     const handleInvalidSession = (reason) => {
         console.error('Invalid session:', reason);
-        localStorage.removeItem('token');
-        localStorage.removeItem('usersoporte');
-        localStorage.removeItem('selectedSucursal');
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('usersoporte');
+        sessionStorage.removeItem('selectedSucursal');
         window.location.href = '/soporte/login';
     };
 
@@ -517,9 +517,9 @@ function Navbar({ onToggleSidebar, onToggleTheme, darkMode }) {
     const handleLogout = () => {
         try {
             // Limpiar localStorage
-            localStorage.removeItem('token');
-            localStorage.removeItem('usersoporte');
-            localStorage.removeItem('selectedSucursal');
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('usersoporte');
+            sessionStorage.removeItem('selectedSucursal');
 
             // Cerrar el menú
             handleClose();
