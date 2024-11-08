@@ -2988,7 +2988,7 @@ function Conexiones() {
                                                 boxShadow: !submitting ? 4 : 1
                                             }
                                         }}
-                                        // onClick={() => !submitting && setOpenConfirmDialog(true)}
+                                        onClick={() => !submitting && setOpenConfirmDialog(true)}
                                     >
                                         <CardContent sx={{
                                             height: '100%',
