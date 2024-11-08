@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const savedUser = localStorage.getItem('user');
+        const savedUser = localStorage.getItem('usersoporte');
         if (savedUser) {
             setUser(JSON.parse(savedUser));
         }
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser(null);
         localStorage.removeItem('user');
-        navigate('/login');
+        navigate('/soporte/login');
     };
 
     return (
